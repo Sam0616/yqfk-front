@@ -19,7 +19,7 @@
                 echarts.registerMap('HK', geoJson);
                 myChart.setOption({
                     title: {
-                        text: '香港18区人口密度 （2011）',
+                        text: '18区人口密度 （2011）',
                         subtext: '人口密度数据来自Wikipedia',
                     },
                     tooltip: {

@@ -62,8 +62,8 @@
 
       <!--      分页-->
       <div class="paginationCon">
-        <el-pagination v-show="isShow" @size-change="handleSizeChange" @current-change="handleCurrentChange "
-                       :current-page="currentPage" :page-sizes="[5, 15, 20, 100]" :page-size='pageSize'
+        <el-pagination v-show="isShow" @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                       :current-page="currentPage" :page-sizes="[5,10, 15, 20, 100]" :page-size='pageSize'
                        layout="total, sizes, prev, pager, next, jumper" :total="totals"></el-pagination>
       </div>
 
@@ -344,15 +344,15 @@
 
       //分页
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-        // 取出当前页的数据
-        this.initListMy(this.currentPage,)
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-        // 取出当前页的数据
-        this.initListMy(val, this.pageSize)
-      },
+      console.log(`每页 ${val} 条`);
+      // 取出当前页的数据
+      this.initListMy(this.currentPage,val)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      // 取出当前页的数据
+      this.initListMy(val,this.pageSize)
+    },
 
 
 

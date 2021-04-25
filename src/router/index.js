@@ -23,7 +23,7 @@ Router.prototype.push = function push (to) {
 
 Vue.use(Router)
 
-export default new Router({
+var router= new Router({
   routes: [
     {
       path: '/',
@@ -122,19 +122,16 @@ export default new Router({
 })
 
 
-/*
 //导航守卫
 router.beforeEach((to, from, next) => {
   console.log("=======导航守卫=====")
-var loginName=sessionStorage.getItem("LOGIN_NAME")
+var loginName=localStorage.getItem("LOGIN_NAME")
 if (loginName!=null||to.path==='/login'||to.path==='/register'){
   next();
 }else {
   next("/login")
 }
-  // 放行
-  next();
-})
-*/
 
-// export default router;
+})
+
+export default router;

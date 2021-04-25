@@ -65,6 +65,7 @@
           if (res.data.status==200){
             //将用户放入localStorage
             localStorage.setItem("LOGIN_NAME",res.data.obj.data.username)
+            sessionStorage.setItem("ROLE_ID",res.data.obj.data.roleid);
             // 编程式路由,对应还有一个replace，replace不能回退
             this.$router.push({
               path: '/home'

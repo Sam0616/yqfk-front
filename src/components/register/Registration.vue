@@ -40,17 +40,17 @@
           </el-form-item>
         </el-form>
         <!-- 用户详细信息 -->
-        <el-form v-show="active == 1" :model="form" :rules="rules" ref="form" class="demo-ruleForm">
-          <el-form-item label prop="userName" :label-width="formLabelWidth">
-            <el-input v-model="form.userName" autocomplete="off">
-              <template slot="prepend">用户名称</template>
-            </el-input>
-          </el-form-item>
-          <!--       <el-form-item label prop="account" :label-width="formLabelWidth">
+       <el-form v-show="active == 1" :model="form" :rules="rules" ref="form" class="demo-ruleForm">
+         <!--        <el-form-item label prop="userName" :label-width="formLabelWidth">
+                  <el-input v-model="form.userName" autocomplete="off">
+                    <template slot="prepend">用户名称</template>
+                  </el-input>
+                </el-form-item>-->
+                 <el-form-item label prop="account" :label-width="formLabelWidth">
                    <el-input v-model="form.account" autocomplete="off">
                      <template slot="prepend">用户账号</template>
                    </el-input>
-                 </el-form-item>-->
+                 </el-form-item>
           <el-form-item ref="password" label prop="password" :label-width="formLabelWidth">
             <el-input v-model="form.password" autocomplete="off" type="password">
               <template slot="prepend">设置密码</template>
@@ -181,6 +181,7 @@
         //ajax
         this.$axios.get("api/user/getCode?phone=" + self.ruleForm.mobile).then(res => {
           console.log(res.data)
+          this.$message("短信已发送，请注意查收")
         })
 
       },
@@ -207,9 +208,32 @@
         };
       },
       submitForm2(formName) {
-        this.active = 2;
-
+        let user={
+          username: this.form.account,
+          password: this.form.password,
+          phone: this.ruleForm.mobile,
+          email: this.form.email
+        }
+        console.log(user)
+        //ajax
+        this.$axios.post("api/user/register", user).then(res => {
+          if (res.data.status==200) {
+            this.$message({
+              type:"success",
+              message:"用户注册成功"
+            });
+            this.active = 2;
+          } else {
+            this.$message({
+              type:"error",
+              message:"用户注册失败"
+            });
+          }
+        })
       },
+
+
+
       tologin() {
         this.$router.push({
           path: "/login"
